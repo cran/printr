@@ -1,0 +1,13 @@
+25811836768f001eee198d2f8694dc1c *DESCRIPTION
+dc19ede51b62c4408e52772978962067 *NAMESPACE
+eda0c171f99378dcd5f2a25688902a47 *NEWS
+8c3fb734ccdc35bfbe66ceab13afe72e *R/help.R
+3b37986ba606c39b59b073dd047e4314 *R/package.R
+cd70b3fcce6bcf55614c97f2e8e9cb3e *R/table.R
+b19ebe4b16f93bfe5b02024be9ff5dd1 *README.md
+4e04d67bdb34521a3c6852f1b40b20b2 *build/vignette.rds
+fcdc620d5f548048ea1fcc6226ae11ba *inst/doc/printr.R
+ade8af0d8bc0630566bab011970875eb *inst/doc/printr.Rmd
+eab5547ef23a7c10e3d673486ac31677 *inst/doc/printr.html
+f2cf8558848d153fa74aa6538d40320d *man/printr.Rd
+ade8af0d8bc0630566bab011970875eb *vignettes/printr.Rmd
