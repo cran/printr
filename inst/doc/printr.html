@@ -12,7 +12,7 @@
 
 <meta name="author" content="Yihui Xie" />
 
-<meta name="date" content="2021-01-26" />
+<meta name="date" content="2021-09-27" />
 
 <title>An Introduction to the printr Package</title>
 
@@ -141,7 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <h1 class="title toc-ignore">An Introduction to the printr Package</h1>
 <h4 class="author">Yihui Xie</h4>
-<h4 class="date">2021-01-26</h4>
+<h4 class="date">2021-09-27</h4>
 
 
 <div id="TOC">
@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p>The <strong>printr</strong> (read “printer” or “print R”) package is a companion package to <a href="https://yihui.org/knitr/"><strong>knitr</strong></a>. Its main purpose is to extend the S3 generic function <code>knit_print()</code> in <strong>knitr</strong>, which is the default value of the chunk option <code>render</code>, as explained in the vignette <a href="https://cran.r-project.org/package=knitr/vignettes/knit_print.html">knit_print.html</a>.</p>
 <div id="overview" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Overview</h1>
+<h1><span class="header-section-number">1</span> Overview</h1>
 <p>To enable the printing methods defined in this package, just <code>library(printr)</code> or <code>loadNamespace(&#39;printr&#39;)</code> in a code chunk (in the beginning) of your <strong>knitr</strong> document. Then some objects will be printed differently with what you would have seen in a normal R console. For example:</p>
 <ul>
 <li>matrices, data frames, and contingency tables are printed as tables (LaTeX, HTML, or Markdown, depending on your output format)</li>
@@ -173,7 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You can find the package source as well as installation instructions on <a href="https://github.com/yihui/printr">Github</a>, and you are welcome to contribute code via pull requests, or file feature requests and bug reports via <a href="https://github.com/yihui/printr/issues">Github issues</a>.</p>
 </div>
 <div id="examples" class="section level1" number="2">
-<h1 number="2"><span class="header-section-number">2</span> Examples</h1>
+<h1><span class="header-section-number">2</span> Examples</h1>
 <p>First we take a look at a quick example of printing some R objects in the R console:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># R uses plain text representation for data frames/matrices/...</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">head</span>(mtcars)</span></code></pre></div>
@@ -198,7 +198,7 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 ##   method                from     
 ##   knit_print.data.frame rmarkdown</code></pre>
 <div id="matricesdata-framestables" class="section level2" number="2.1">
-<h2 number="2.1"><span class="header-section-number">2.1</span> Matrices/data frames/tables</h2>
+<h2><span class="header-section-number">2.1</span> Matrices/data frames/tables</h2>
 <p>Matrices and data frames are printed as tables using the <code>kable()</code> function in <strong>knitr</strong>:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">4</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
@@ -814,7 +814,7 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 </table>
 </div>
 <div id="search-results-from-help.search" class="section level2" number="2.2">
-<h2 number="2.2"><span class="header-section-number">2.2</span> Search results from <code>help.search()</code></h2>
+<h2><span class="header-section-number">2.2</span> Search results from <code>help.search()</code></h2>
 <p>Here are some examples demonstrating the results of <code>help.search()</code>, or you can also use <code>??</code> to search for a string.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>??sunflower</span></code></pre></div>
 <table>
@@ -937,10 +937,11 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre
 <p>In a normal R session, the results will be displayed as an HTML page by default, but normally these functions are meant to be called in an interactive R session, and <strong>knitr</strong> documents are often compiled in non-interactive R sessions, so we changed the printing behavior of these results, and readers will get the basic idea of these functions when reading the <strong>knitr</strong> output. If they want to run these functions by themselves, they can do it in an interactive R session.</p>
 </div>
 <div id="help-pages" class="section level2" number="2.3">
-<h2 number="2.3"><span class="header-section-number">2.3</span> Help pages</h2>
+<h2><span class="header-section-number">2.3</span> Help pages</h2>
 <p>When you want to read the help page of a certain R object, you normally use <code>?</code> or <code>help()</code>, which will launch a separate help page from the R session, and require human interaction. Again, we may not desire human interactions in <strong>knitr</strong> documents, so the help pages are printed as static documents here.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>?coef</span></code></pre></div>
 <div class="r-help-page">
+<div class="container">
 <table width="100%" summary="page for coef">
 <tr>
 <td>
@@ -1046,9 +1047,11 @@ Examples
 x &lt;- 1:5; coef(lm(c(1:3, 7, 6) ~ x))
 </pre>
 </div>
+</div>
 <p>When help pages are really long, we can use the chunk option <code>printr.help.sections</code> to select a few sections to display, e.g. we only show the sections <code>description</code> and <code>usage</code> of the <code>paste()</code> function:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>?paste</span></code></pre></div>
 <div class="r-help-page">
+<div class="container">
 <table width="100%" summary="page for paste">
 <tr>
 <td>
@@ -1077,8 +1080,9 @@ paste0(...,            collapse = NULL, recycle0 = FALSE)
 </pre>
 </div>
 </div>
+</div>
 <div id="vignettedataset-lists" class="section level2" number="2.4">
-<h2 number="2.4"><span class="header-section-number">2.4</span> Vignette/dataset lists</h2>
+<h2><span class="header-section-number">2.4</span> Vignette/dataset lists</h2>
 <p>We can print the lists of vignettes and datasets in packages using <code>vignette()</code> and <code>data()</code>, respectively.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="at">package =</span> <span class="st">&#39;rpart&#39;</span>)</span></code></pre></div>
 <table>
@@ -1254,7 +1258,7 @@ paste0(...,            collapse = NULL, recycle0 = FALSE)
 <pre><code>## No vignettes found</code></pre>
 </div>
 <div id="package-info" class="section level2" number="2.5">
-<h2 number="2.5"><span class="header-section-number">2.5</span> Package info</h2>
+<h2><span class="header-section-number">2.5</span> Package info</h2>
 <p>A description of a package can be printed via <code>library(help = &#39;foo&#39;)</code>:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">help =</span> <span class="st">&#39;printr&#39;</span>)</span></code></pre></div>
 <pre><code>        Information on package &#39;printr&#39;
@@ -1265,7 +1269,7 @@ Package:           printr
 Type:              Package
 Title:             Automatically Print R Objects to Appropriate Formats According to the
                    &#39;knitr&#39; Output Format
-Version:           0.1.1
+Version:           0.2
 Author:            Yihui Xie
 Maintainer:        Yihui Xie &lt;xie@yihui.name&gt;
 Description:       Extends the S3 generic function knit_print() in &#39;knitr&#39; to
@@ -1273,16 +1277,15 @@ Description:       Extends the S3 generic function knit_print() in &#39;knitr&#3
                    Markdown or LaTeX. For example, data frames are automatically printed
                    as tables, and the help() pages can also be rendered in &#39;knitr&#39;
                    documents.
-Imports:           knitr (&gt;= 1.16)
+Imports:           knitr (&gt;= 1.31)
 Suggests:          tools, rmarkdown
 License:           GPL
 URL:               https://yihui.org/printr/
 BugReports:        https://github.com/yihui/printr/issues
 VignetteBuilder:   knitr
-LazyData:          TRUE
 RoxygenNote:       7.1.1
 Encoding:          UTF-8
-Built:             R 4.0.3; ; 2021-01-26 23:18:57 UTC; unix
+Built:             R 4.1.1; ; 2021-09-27 19:39:24 UTC; unix
 
 Index:
 
