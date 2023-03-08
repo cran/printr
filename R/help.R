@@ -1,6 +1,6 @@
 #" browseVignettes()
 #' @export
-knit_print.browseVignettes = function(x, options) {
+knit_print.browseVignettes = function(x, ...) {
   if (length(x) == 0) return('No vignettes found')
   x = do.call(rbind, x)
   x = x[, c('Package', 'PDF', 'Title'), drop = FALSE]
@@ -10,12 +10,12 @@ knit_print.browseVignettes = function(x, options) {
   } else {
     x[order(x[, 1]), , drop = FALSE]  # order by package names
   }
-  knit_print(x, options)
+  knit_print(x, ...)
 }
 
 #" ?foo / help(foo)
 #' @export
-knit_print.help_files_with_topic = function(x, options) {
+knit_print.help_files_with_topic = function(x, options, ...) {
   n = length(x)
   topic = attr(x, 'topic')
   if (n == 0) return(paste(
@@ -33,12 +33,12 @@ knit_print.help_files_with_topic = function(x, options) {
   Rd = db[[which(base == sub('[.]Rd$', '', basename(names(db))))]]
   Rd = extract_Rd(Rd, options$printr.help.sections)
 
-  type = knitr::pandoc_to()
-  if (is.null(type)) {
+  to = knitr::pandoc_to()
+  if (is.null(to)) {
     type = knitr:::out_format()
     if (type == 'html') type = 'HTML' else if (type != 'latex') type = 'txt'
   } else {
-    type = if (type %in% c('html', 'markdown')) 'HTML' else {
+    type = if (to %in% c('html', 'markdown')) 'HTML' else {
       # it seems \bold in \usepackage{Rd} conflicts with a certain package in
       # the Pandoc template, so unfortunately we cannot use latex format here
 
@@ -50,12 +50,11 @@ knit_print.help_files_with_topic = function(x, options) {
   # call tools::Rd2[txt,HTML,latex]
   convert = getFromNamespace(paste('Rd', type, sep = '2'), 'tools')
   out = capture.output(convert(Rd))
-  if (type == 'HTML') out = unindent(out)
   out = paste(out, collapse = '\n')
   # only need the body fragment (Rd2HTML(fragment = TRUE) does not really work)
   if (type == 'HTML') {
     out = gsub('.*?<body>(.*)</body>.*', '<div class="r-help-page">\\1</div>', out)
-    out = gsub('<pre>', '<pre class="r">', out)
+    if (!is.null(to)) out = sprintf('```{=html}\n%s\n```', out)
   }
 
   out = trimws(out)
@@ -72,25 +71,9 @@ extract_Rd = function(Rd, section) {
   Rd
 }
 
-# remove the leading four spaces, otherwise Pandoc treats the line as <pre>
-unindent = function(x) {
-  x = gsub('\t', '    ', x)
-  if (length(i0 <- grep('^    ', x)) == 0) return(x)
-
-  i1 = grep('<pre>|<pre .*>', x); i2 = grep('</pre>', x)
-  for (i in i0) {
-    # do not unindent lines between <pre> and </pre>
-    if (length(i1) * length(i2) == 0 || max(i1[i1 < i]) > min(i2[i2 > i])) {
-      while (grepl('^    ', x[i])) x[i] = gsub('^    ', '  ', x[i])
-    }
-  }
-
-  x
-}
-
 #" help.search()
 #' @export
-knit_print.hsearch = function(x, options) {
+knit_print.hsearch = function(x, ...) {
   # case-insensitive matching of column names (e.g. R 3.2.0 uses 'Topic' but R
   # 3.1.x uses 'topic')
   j = match(tolower(c('Package', 'topic', 'Type', 'title')), tolower(names(x$matches)))
@@ -102,18 +85,18 @@ knit_print.hsearch = function(x, options) {
   # remove duplicate rows
   out = out[!duplicated(out), , drop = FALSE]
   rownames(out) = NULL
-  knit_print(out, options)
+  knit_print(out, ...)
 }
 
 #" library(help = foo)
 #' @export
-knit_print.packageInfo = function(x, options) {
+knit_print.packageInfo = function(x, ...) {
   sub('^\n', '', paste(format(x), collapse = '\n'))
 }
 
 #" data()/vignette()
 #' @export
-knit_print.packageIQR = function(x, options) {
+knit_print.packageIQR = function(x, options, ...) {
   if (nrow(x$results) == 0) return(paste(x$title, 'not found'))
   out = x$results[, c('Package', 'Item', 'Title'), drop = FALSE]
   title = x$title
